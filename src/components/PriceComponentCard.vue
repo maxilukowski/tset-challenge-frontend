@@ -2,7 +2,7 @@
   <div class="price-component-card">
     <PriceComponentCardTotal />
     <PriceComponentCardEntries :items="items" class="entries" />
-    <PriceComponentCardInput :items="items" />
+    <PriceComponentCardInput @ghost-field-values="updateItems" />
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
     return {
       items: [],
     }
+  },
+  methods: {
+    updateItems(payload) {
+      this.items.push(payload)
+    },
   },
 }
 </script>
