@@ -15,8 +15,8 @@
       >
         <div class="entry-label">{{ item.label }}</div>
         <div class="entry-label">{{ item.value }}</div>
+        <button v-show="item.isHover" @click="deleteRow(item.id)">trash</button>
       </div>
-      <button v-show="item.isHover">trash</button>
     </div>
   </div>
 </template>
@@ -28,6 +28,11 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    deleteRow(id) {
+      this.items = this.items.filter((item) => item.id !== id)
+    },
   },
 }
 </script>

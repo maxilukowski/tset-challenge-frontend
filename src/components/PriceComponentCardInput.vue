@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { uuid } from 'vue-uuid'
 export default {
   data() {
     return {
@@ -21,7 +22,8 @@ export default {
   },
   methods: {
     submit() {
-      this.$emit('ghost-field-values', { ...this.ghostField })
+      this.ghostField.id++
+      this.$emit('ghost-field-values', { ...this.ghostField, id: uuid.v4() })
     },
   },
 }
