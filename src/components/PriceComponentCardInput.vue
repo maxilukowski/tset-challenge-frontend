@@ -1,7 +1,9 @@
 <template>
-  <form class="ghost-fields" @submit.prevent="submit">
-    <input type="text" placeholder="label" v-model="ghostField.label" />
-    <input type="number" placeholder="value" v-model="ghostField.value" />
+  <form class="ghost-fields-row" @submit.prevent="submit">
+    <div class="ghost-fields">
+      <input type="text" placeholder="label" v-model="ghostField.label" />
+      <input type="number" placeholder="value" v-model="ghostField.value" />
+    </div>
     <button>submit</button>
   </form>
 </template>
@@ -13,6 +15,7 @@ export default {
       ghostField: {
         label: '',
         value: 0,
+        isHover: false,
       },
     }
   },
@@ -25,6 +28,10 @@ export default {
 </script>
 
 <style scoped>
+.ghost-fields-row {
+  display: flex;
+  justify-content: space-between;
+}
 .ghost-fields {
   display: flex;
   justify-content: space-between;

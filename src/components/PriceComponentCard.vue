@@ -1,7 +1,7 @@
 <template>
   <div class="price-component-card">
     <PriceComponentCardTotal />
-    <PriceComponentCardEntries :items="items" class="entries" />
+    <PriceComponentCardEntries :items="items" />
     <PriceComponentCardInput @ghost-field-values="updateItems" />
   </div>
 </template>
@@ -34,11 +34,9 @@ export default {
   padding: 40px 60px;
   background-color: papayawhip;
   height: 80vh;
+  min-width: 500px;
   width: 60vw;
   display: flex;
   flex-direction: column;
-}
-.entries {
-  flex: 1;
 }
 </style>
