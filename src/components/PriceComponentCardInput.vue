@@ -49,12 +49,9 @@ export default {
       const hasDecimal = this.ghostField.value.toString().includes('.')
       if (hasDecimal) {
         const hasMultipleDecimals =
-          this.ghostField.value.toString().split('.')[1].length >= 1
-        const hasOneDecimal =
-          this.ghostField.value.toString().split('.')[1].length <= 1
-        console.log(this.ghostField.value.toString())
-        if (hasOneDecimal) return this.ghostField.value
+          this.ghostField.value.toString().split('.')[1].length > 1
         if (hasMultipleDecimals) return this.ghostField.value.toFixed(2)
+        else return this.ghostField.value.toFixed(1)
       }
       return this.ghostField.value.toFixed(1)
     },

@@ -14,9 +14,10 @@ export default {
   },
   computed: {
     total() {
-      return this.items
-        .reduce((acc, curr) => Number(acc) + Number(curr.value), this.basePrice)
-        .toFixed(2)
+      return this.items.reduce(
+        (acc, curr) => Number(acc) + Number(curr.formattedValue),
+        this.basePrice
+      )
     },
   },
 }
