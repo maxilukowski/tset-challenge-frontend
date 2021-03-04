@@ -5,7 +5,7 @@
         <div class="entry-label">baseprice</div>
         <div class="entry-label">1</div>
       </div>
-      <button v-show="isHover">trash</button>
+      <!-- <button v-show="isHover">trash</button> -->
     </div>
     <div v-for="(item, index) in items" :key="index" class="entry-row">
       <div
@@ -14,8 +14,10 @@
         @mouseleave="item.isHover = false"
       >
         <div class="entry-label">{{ item.label }}</div>
-        <div class="entry-label">{{ item.value }}</div>
-        <button v-show="item.isHover" @click="deleteRow(item.id)">trash</button>
+        <div class="entry-label">{{ item.formattedValue }}</div>
+        <button v-show="item.isHover" @click="idToRemove(item.id)">
+          trash
+        </button>
       </div>
     </div>
   </div>
@@ -30,8 +32,8 @@ export default {
     return {}
   },
   methods: {
-    deleteRow(id) {
-      this.items = this.items.filter((item) => item.id !== id)
+    idToRemove(id) {
+      this.$emit('id-to-remove', id)
     },
   },
 }
@@ -54,3 +56,4 @@ export default {
   justify-content: space-between;
 }
 </style>
+/* this.items = this.items.filter((item) => item.id !== id) */

@@ -1,7 +1,7 @@
 <template>
   <div class="price-component-card">
-    <PriceComponentCardTotal />
-    <PriceComponentCardEntries :items="items" />
+    <PriceComponentCardTotal :items="items" />
+    <PriceComponentCardEntries :items="items" @id-to-remove="removeRow" />
     <PriceComponentCardInput @ghost-field-values="updateItems" />
   </div>
 </template>
@@ -24,6 +24,9 @@ export default {
   methods: {
     updateItems(payload) {
       this.items.push(payload)
+    },
+    removeRow(id) {
+      this.items = this.items.filter((item) => item.id !== id)
     },
   },
 }
