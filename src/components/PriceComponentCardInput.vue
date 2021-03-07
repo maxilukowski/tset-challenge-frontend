@@ -51,7 +51,7 @@ export default {
         const hasMultipleDecimals =
           this.ghostField.value.toString().split('.')[1].length > 1
         if (hasMultipleDecimals) return this.ghostField.value.toFixed(2)
-        else return this.ghostField.value.toFixed(1)
+        else return this.ghostField.value
       }
       return this.ghostField.value.toFixed(1)
     },

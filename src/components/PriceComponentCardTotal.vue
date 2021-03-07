@@ -1,5 +1,5 @@
 <template>
-  <div>total : {{ total }}</div>
+  <div>total : {{ formatTotal }}</div>
 </template>
 
 <script>
@@ -18,6 +18,16 @@ export default {
         (acc, curr) => Number(acc) + Number(curr.formattedValue),
         this.basePrice
       )
+    },
+    formatTotal() {
+      const hasDecimal = this.total.toString().includes('.')
+      if (hasDecimal) {
+        const hasMultipleDecimals =
+          this.total.toString().split('.')[1].length > 1
+        if (hasMultipleDecimals) return this.total.toFixed(2)
+        else return this.total
+      }
+      return this.total.toFixed(1)
     },
   },
 }
