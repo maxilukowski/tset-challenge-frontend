@@ -1,7 +1,12 @@
 <template>
   <div class="price-component-card">
     <PriceComponentCardTotal :items="items" />
-    <PriceComponentCardEntries :items="items" @id-to-remove="removeRow" />
+    <PriceComponentCardEntries
+      :itemBeingEditedId="itemBeingEditedId"
+      :items="items"
+      @row-to-remove="removeRow"
+      @row-to-edit="editRow"
+    />
     <PriceComponentCardInput @ghost-field-values="updateItems" />
   </div>
 </template>
@@ -19,6 +24,7 @@ export default {
   data() {
     return {
       items: [],
+      itemBeingEditedId: undefined,
     }
   },
   methods: {
@@ -27,6 +33,14 @@ export default {
     },
     removeRow(id) {
       this.items = this.items.filter((item) => item.id !== id)
+    },
+    editRow(id) {
+      this.items.forEach((item) => {
+        if (item.id === id) {
+          item.isEdit = !item.isEdit
+          this.itemBeingEditedId = item.id
+        }
+      })
     },
   },
 }

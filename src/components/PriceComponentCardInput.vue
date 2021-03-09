@@ -29,6 +29,7 @@ export default {
         label: undefined,
         value: undefined,
         isHover: false,
+        isEdit: false,
         formattedValue: undefined,
       },
     }

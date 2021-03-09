@@ -5,18 +5,27 @@
         <div class="entry-label">baseprice</div>
         <div class="entry-label">1</div>
       </div>
-      <!-- <button v-show="isHover">trash</button> -->
     </div>
-    <div v-for="(item, index) in items" :key="index" class="entry-row">
-      <div
-        class="row-values"
-        @mouseenter="item.isHover = true"
-        @mouseleave="item.isHover = false"
-      >
-        <div class="entry-label">{{ item.label }}</div>
+    <div
+      v-for="item in items"
+      :key="item.id"
+      class="entry-row"
+      @mouseenter="item.isHover = true"
+      @mouseleave="item.isHover = false"
+    >
+      <div class="row-values">
+        <input
+          v-if="item.isEdit && itemBeingEditedId === item.id"
+          type="text"
+          v-model="item.label"
+        />
+        <div v-else class="entry-label">{{ item.label }}</div>
         <div class="entry-label">{{ item.formattedValue }}</div>
-        <button v-show="item.isHover" @click="idToRemove(item.id)">
+        <button v-show="item.isHover" @click="rowToRemove(item.id)">
           trash
+        </button>
+        <button v-show="item.isHover" @click="rowToEdit(item.id)">
+          edit
         </button>
       </div>
     </div>
@@ -27,13 +36,17 @@
 export default {
   props: {
     items: Array,
+    itemBeingEditedId: Boolean,
   },
   data() {
     return {}
   },
   methods: {
-    idToRemove(id) {
-      this.$emit('id-to-remove', id)
+    rowToRemove(id) {
+      this.$emit('row-to-remove', id)
+    },
+    rowToEdit(id) {
+      this.$emit('row-to-edit', id)
     },
   },
 }
